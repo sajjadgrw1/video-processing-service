@@ -12,7 +12,7 @@ const generateDownloadLink = async (filePath) => {
 
     // Store the job ID in Redis with the link ID as the key
     // You can use any appropriate expiration time here
-    await videoQueue.client.set(linkId, job.id, 'EX', 60);
+    await videoQueue.client.set(linkId, job.id, 'EX', process.env.DOWNLOAD_LINK_EXPIRY);
 
     // Return the download link with the link ID
     return `http://localhost:3000/api/videos/download/${linkId}`;

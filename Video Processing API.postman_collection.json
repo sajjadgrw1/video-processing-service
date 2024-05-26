@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "255684c8-9119-4f11-ac5a-fe5a16b71318",
+		"name": "Video Processing API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25826351"
+	},
+	"item": [
+		{
+			"name": "Upload Video - Grayscale Effect",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Job Id exists\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"jobId\");",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"jobId\", jsonData.jobId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/Users/sajjadahmad/Desktop/other-work/kosmic/video-processing-service/video.mp4"
+						},
+						{
+							"key": "effect",
+							"value": "grayscale"
+						},
+						{
+							"key": "dimensions",
+							"value": "500x500"
+						}
+					]
+				},
+				"url": "http://localhost:3000/api/videos/upload"
+			},
+			"response": [
+				{
+					"name": "Job Id",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/Users/sajjadahmad/Desktop/other-work/kosmic/video-processing-service/video.mp4"
+								},
+								{
+									"key": "effect",
+									"value": "grayscale"
+								},
+								{
+									"key": "dimensions",
+									"value": "500x500"
+								}
+							]
+						},
+						"url": "http://localhost:3000/api/videos/upload"
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Get Video Progress",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/videos/progress/{{jobId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Download Processed Video",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/videos/download/job/{{jobId}}"
+			},
+			"response": []
+		}
+	]
+}

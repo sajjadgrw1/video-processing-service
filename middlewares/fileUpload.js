@@ -1,4 +1,3 @@
-// middlewares/fileUpload.js
 const multer = require('multer');
 const path = require('path');
 
@@ -30,7 +29,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
-    limits: { fileSize: 100 * 1024 * 1024 }, // 100 MB file size limit
+    limits: { fileSize: process.env.VIDEO_SIZE }, // 100 MB file size limit
 });
 
 module.exports = upload;

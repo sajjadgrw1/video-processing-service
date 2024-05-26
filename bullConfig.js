@@ -4,8 +4,8 @@ const Bull = require('bull');
 const redisOptions = {
   // Redis connection URL
   redis: {
-    port: 6379,         // Redis port
-    host: '127.0.0.1',  // Redis host
+    port: process.env.REDIS_PORT,         // Redis port
+    host: process.env.REDIS_URL,  // Redis host
     // password: 'auth', // Redis password (if required)
     // db: 0,            // Redis database index (if required)
   },

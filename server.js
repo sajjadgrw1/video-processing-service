@@ -1,4 +1,5 @@
 // server.js
+require('dotenv').config();
 const express = require('express');
 const videoRoutes = require('./routes/videoRoutes');
 const videoQueue = require('./bullConfig');

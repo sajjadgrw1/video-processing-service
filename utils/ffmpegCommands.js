@@ -1,7 +1,7 @@
 // utils/ffmpegCommands.js
 const ffmpeg = require('fluent-ffmpeg');
 
-const applyEffect = (inputPath, outputPath, effect, dimensions, callback) => {
+const applyEffect = (inputPath, outputPath, effect, dimensions, myprogress , callback) => {
     let command = ffmpeg(inputPath).output(outputPath);
 
     switch (effect) {
@@ -26,7 +26,12 @@ const applyEffect = (inputPath, outputPath, effect, dimensions, callback) => {
         command = command.size(dimensions);
     }
 
+    command.on('progress',(info)=>{
+        myprogress(info.percent);
+    })
+
     command.on('end', () => {
+        myprogress(100);
         callback(null, outputPath);
     }).on('error', (err) => {
         callback(err);

@@ -38,7 +38,7 @@ exports.uploadVideo = async (req, res) => {
 
     try {
         const duration = await checkVideoDuration(filePath);
-        const maxDuration = 300; // 5 minutes limit
+        const maxDuration = process.env.VIDEO_LENGTH; 
 
         if (duration > maxDuration) {
             return res.status(400).send('Video duration exceeds the 5 minutes limit.');
