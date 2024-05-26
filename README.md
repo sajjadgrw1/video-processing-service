@@ -27,13 +27,13 @@
 - Download links expire after 2 minutes.
 - Potential improvements include better error handling, support for more video effects, and optimized processing for large video files.
 
-
+```
 brew install ffmpeg 
 brew install redis
 brew services start redis
+```
 
-
-`curl -X POST http://localhost:3000/api/videos/upload \
+```curl -X POST http://localhost:3000/api/videos/upload \
      -H "Content-Type: multipart/form-data" \
      -F "video=@path/to/video;type=video/mp4" \
      -F "effect=grayscale" \
@@ -62,4 +62,4 @@ curl -X POST http://localhost:3000/api/videos/upload \
      -F "video=@path/to/video;type=video/mp4" \
      -F "effect=sharpen" \
      -F "dimensions=500x500"
-`
+```
