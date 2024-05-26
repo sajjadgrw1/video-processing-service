@@ -23,8 +23,7 @@
 
 ## Assumptions and Improvements
 
-- Assumed a maximum video length of 5 minutes.
-- Download links expire after 2 minutes.
+- Download links expire after 30 seconds.
 - Potential improvements include better error handling, support for more video effects, and optimized processing for large video files.
 
 ```
